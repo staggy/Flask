@@ -168,4 +168,5 @@ pyvenv.cfg
 Lib/
 Scripts/
 static/
+include/
 
