@@ -7,7 +7,8 @@ My teamate who was responsible for the CSS did a wonderful job but for this repo
 # How to Build
 Download and install pyhton 3.8 or 3.9<br>
 https://www.python.org/downloads/windows/ <br>
-Download and instlall pycharm professional <br> 
+Download and instlall pycharm professional <br>
+(This can be ran in the free version of Pycharm you will have to do a differnt setup)<br>
 https://www.jetbrains.com/pycharm/download/#section=windows<br>
 Open Flask. <br>
 Create a new project and select flask as the type. <br>
