@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Search for recipes{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('search_path.search') }}">Search again?</a>
+    <p>Your favorites have been added</p>
+    <p><a href="{{ url_for('myrecipes_path.my_recipes') }}">See your favorite recipes</a></p>
+    
+{% endblock %}

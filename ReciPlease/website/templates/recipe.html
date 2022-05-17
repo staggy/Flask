@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Recipe{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('search_path.search') }}">Search a recipe?</a>
+    
+    <p>
+        {{ recipe[1] }}
+    </p>
+    Instructions:<br>
+    <p>
+        {{ recipe[2] }}
+    </p>
+    Ingredients:<br>
+    <p>
+        Ingredients comming soon!
+    </p>
+{% endblock %}

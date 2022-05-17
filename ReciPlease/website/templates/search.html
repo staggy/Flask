@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Search for recipes {% endblock %}
+
+{% block content %}
+    <h1>Search Recipes</h1>
+    <p style="color:red">{{ message }}</p>
+     <form method="POST">
+        <p>
+            <label for="searchName">Search by Name: </label>
+            <input id="search" name="searchName" type="text">
+        </p>
+        
+         <p>
+            <label for="searchIng">Search by Ingredient: </label>
+            <input id="search" name="searchIng" type="text">
+        </p>
+        
+        <input type="submit" id="search" name="search" value="Search Recipe">
+    </form>
+
+{% endblock %}

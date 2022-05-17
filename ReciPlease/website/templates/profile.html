@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content
+%}
+    <h1>Welcome {{ user.first_name }}</h1>
+    <p>
+    Email: <b>{{ user.email }}</b>
+    </p>
+  <button onclick="location.href='/changeemail'" type="button">
+         Change Email</button>
+
+  <button onclick="location.href='/changepassword'" type="button">
+         Change Password</button>
+
+{% endblock %}

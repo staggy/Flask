@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}test!{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <p>
+            <label for="searchName">Search by Name: </label>
+            <input id="search" name="searchName" type="text">
+        </p>
+        
+         <p>
+            <label for="searchIng">Search by Ingredient: </label>
+            <input id="search" name="searchIng" type="text">
+        </p>
+        
+        <input type="submit" id="search" value="Search Recipe">
+    </form>
+{% endblock %}

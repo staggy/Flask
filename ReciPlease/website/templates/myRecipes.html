@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Recipe{% endblock %}
+
+{% block content %}
+<h2><b>favorite Recipes</b></h2>
+
+<ul>
+{% for recipe in recipe_list %}
+    <li><a href="{{ url_for('recipe_path.recipe_template') }}?id={{recipe.id }}">{{recipe.name}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

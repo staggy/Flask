@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Change Email Address{% endblock %}
+{% block content
+%}
+<form method="POST">
+  <h3 align="center">Change Email Address</h3>
+  <div class="form-group">
+    <label for="email1">New Email Address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email1"
+      name="email1"
+      placeholder="Enter new email address"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn confirm btn-primary">Change Email Address</button>
+</form>
+{% endblock %}
