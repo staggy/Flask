@@ -2,7 +2,7 @@
 By Carl Gager <br>
 I am creating this repository to showcase what I have learned in Flask Development.<br>
 I was the lead developer of our team and was responsible for managing pulls, structure, database, and deployment of our project.<br>
-My teamate was responsible for the CSS and did a wonderful job but for this repository I have removed his code to simplify the HMTL templates and make it easier for people to learn from this project<br>
+My teamate who was responsible for the CSS did a wonderful job but for this repository I have removed that code to simplify the HMTL templates and make it easier for people to learn from this project<br>
 
 # How to Build
 Download and install pyhton 3.8 or 3.9<br>
@@ -35,4 +35,4 @@ By default it is http://127.0.0.1:5000/<br>
 
 # Public Website
 The url is http://reciplease.recipes/ <br>
-This looks very different as there are CSS and JS changes.
+This looks very different as there are CSS, JS, and database changes.
