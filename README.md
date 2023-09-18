@@ -32,8 +32,4 @@ To sign in and see all pages please use this test user <br>
 Email: test1@test.com<br>
 Password: Test01!<br>
 The link to the website will be in the terminal<br>
-By default it is http://127.0.0.1:5000/<br>
-
-# Public Website
-The url is http://reciplease.recipes/ <br>
-This looks very different as there are CSS, JS, and database changes.
+By default it is http://127.0.0.1:5000/
