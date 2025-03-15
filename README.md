@@ -4,7 +4,7 @@ https://www.python.org/downloads/windows/ <br>
 Download and instlall pycharm <br>
 (This can be ran in the free version of Pycharm you will have to do a differnt setup)<br>
 https://www.jetbrains.com/pycharm/download/#section=windows<br>
-With Git or manually add teh files to your desired location.<br>
+With Git or manually add the files to your desired location.<br>
 Open pycharm, then select Open and browse to the location of the top level Flask folder. <br>
 Create a virtual enviroment when it asks to the same location /Flask/.vevn/ <br>
 In the pycharm terminal check if you are inside the virtual enviroment (if not type venv\Scripts\activate) <br>
