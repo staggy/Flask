@@ -9,6 +9,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from importlib import import_module
 import os, hashlib
 
 db = SQLAlchemy()
@@ -37,9 +38,13 @@ else:
     uncomment the below print statments
     """
     # print(abspath)
-    recpath = abspath + '\\ReciPlease\\website\\recipes\\'
-    dbpath = f"{abspath}\\ReciPlease\\website\\{DB_NAME}"
+    recpath = abspath + '\\website\\recipes\\'
+    dbpath = f"{abspath}\\website\\instance\\{DB_NAME}"
 
+def register_blueprints(app):
+    for module_name in ('home', 'recipe', 'myrecipes', 'search', 'auth'):
+        module = import_module(f"website.{module_name}.routes")
+        app.register_blueprint(module.blueprint)
 
 def create_app():
     # IM FOR TESTING
@@ -52,45 +57,20 @@ def create_app():
     
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'Flask YOLO SECRET KEY'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(app.instance_path, DB_NAME)}'
+    
     # Takes defined database and initializes it.
     db.init_app(app)
     
+    register_blueprints(app)
     
-    """
-       Managing Pages:
-    
-            Add all paths to html pages here.
-    """
-    from .auth import auth
-    from website.home.home_path import home_path
-    from website.search.search_path import search_path
-    from website.searched.searched_path import searched_path
-    from website.myrecipes.myrecipes_path import myrecipes_path
-    from website.recipe.recipe_path import recipe_path
-
-    # from website.test.test_path import test_path, testsearch_path, testsearched_path, testrecipe_path
-    # app.register_blueprint(test_path, url_prefix='/')
-    # app.register_blueprint(testsearch_path, url_prefix='/')
-    # app.register_blueprint(testsearched_path, url_prefix='/')
-    # app.register_blueprint(testrecipe_path, url_prefix='/')
-
-    #         Add all blueprint paths here.
-    app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(home_path, url_prefix='/')
-    app.register_blueprint(search_path, url_prefix='/')
-    app.register_blueprint(searched_path, url_prefix='/')
-    app.register_blueprint(myrecipes_path, url_prefix='/')
-    app.register_blueprint(recipe_path, url_prefix='/')
-    ##############################################################
-
-    # import the model and create the database
+    # # import the model and create the database
     from .models import User, Note, Recipe, recipe_ingredient
 
     create_database(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
+    login_manager.login_view = 'auth_blueprint.login'
     login_manager.init_app(app)
 
     @login_manager.user_loader
@@ -101,18 +81,20 @@ def create_app():
 
 
 def create_database(app):
-    # String=Folder name
-    if not path.exists(dbpath):
-        print(f"The fuq|{dbpath}")
-        db.create_all(app=app)
-        print('Created Database!\nCreating the recipes table. . .')
-
-        # Create the Test user
-        create_test_user(app)
-
-        # import the file that has the statements already made
-        create_recipe_table(app)
-    return
+    db_path = os.path.join(app.instance_path, "database.db")
+    
+    with app.app_context():
+        if not os.path.exists(db_path):
+            print(f"The fuq|{dbpath}")
+            db.create_all()
+            print('Created Database!\nCreating the recipes table. . .')
+        
+            # Create the Test user
+            create_test_user(app)
+        
+            # import the file that has the statements already made
+            create_recipe_table(app)
+        return
 
 
 def create_test_user(app):
@@ -132,7 +114,7 @@ def create_test_user(app):
         m.update(salt)
         hashed_and_salted_password = m.digest()
 
-        new_user = User(email='test1@test.com', first_name='test',
+        new_user = User(email='test@test.com', first_name='test',
                         password=hashed_and_salted_password, salt=salt)
         db.session.add(new_user)
         db.session.commit()

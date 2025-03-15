@@ -1,15 +1,16 @@
 """
 """
+from website.auth import blueprint
+
 import hashlib
 import os
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from flask import render_template, request, flash, redirect, url_for
+from website.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import db
+from website import db
 from flask_login import login_user, login_required, logout_user, current_user
 import re
 
-auth = Blueprint('auth', __name__)
 
 # repeatable number/letter combination with a dot or underscore and any number/letter combination
 # followed by an @ and domain. not case-sensitive
@@ -22,10 +23,10 @@ first_name_pattern = re.compile(r'^[a-zA-Z]+$', re.IGNORECASE)
 # Should have at least one number.
 # Should have at least one uppercase and one lowercase character.
 # Should have at least one special symbol.
-# Should be between 6 to 20 characters long.
+# Should be between 6 and 20 characters long.
 password_pattern = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
 
-@auth.route('/login', methods=['GET', 'POST'])
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -43,18 +44,18 @@ def login():
         else:
             flash('Logged in successfully!', category='success')
             login_user(user, remember=True)
-            return redirect(url_for('home_path.home'))
+            return redirect(url_for('home_blueprint.home'))
+    elif request.method == 'GET':
+        return render_template("login.html", user=current_user)
 
-    return render_template("login.html", user=current_user)
-
-@auth.route('/logout')
+@blueprint.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth_blueprint.login'))
 
 
-@auth.route('/register', methods=['GET', 'POST'])
+@blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -111,17 +112,17 @@ def register():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('home_path.home'))
+            return redirect(url_for('home_blueprint.home'))
     
     return render_template("register.html", user=current_user)
 
 
-@auth.route('/profile', methods=['GET', 'POST'])
+@blueprint.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     return render_template("profile.html", user=current_user)
 
-@auth.route('/changepassword', methods=['GET', 'POST'])
+@blueprint.route('/changepassword', methods=['GET', 'POST'])
 @login_required
 def change_password():
     if request.method == 'POST':
@@ -160,11 +161,11 @@ def change_password():
 
             flash('Password changed! Please log in again.', category='success')
             logout_user()
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth_blueprint.login'))
 
     return render_template("changepassword.html", user=current_user)
 
-@auth.route('/changeemail', methods=['GET', 'POST'])
+@blueprint.route('/changeemail', methods=['GET', 'POST'])
 @login_required
 def change_email():
     if request.method == 'POST':
@@ -183,6 +184,6 @@ def change_email():
 
             flash('Email changed! Please log in again.', category='success')
             logout_user()
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth_blueprint.login'))
 
     return render_template("changeemail.html", user=current_user)
