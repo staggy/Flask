@@ -1,6 +1,6 @@
 import hashlib
 from base64 import b64decode, b64encode
-from . import db
+from website import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 

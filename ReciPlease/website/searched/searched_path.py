@@ -3,7 +3,10 @@ Page Logic goes here
 
 login_required
 """
-from flask import Blueprint, render_template, request
+"""
+from website.searched import blueprint
+
+from flask import render_template, request
 from flask_login import login_required, current_user
 from website.models import Recipe, User
 
@@ -11,10 +14,7 @@ from website.sanitize import *
 from website import db
 
 
-searched_path = Blueprint('searched_path', __name__)
-
-
-@searched_path.route('/searched', methods=['get', 'post'])
+@blueprint.route('/searched', methods=['get', 'post'])
 @login_required
 def searched():
     # Called after form is submitted passes the search results and displays
@@ -36,3 +36,4 @@ def searched():
         return render_template('searchedfavorited.html', user=current_user)
     # if GET then just render the searched page
     return render_template('searched.html', user=current_user, favorited=fav)
+"""

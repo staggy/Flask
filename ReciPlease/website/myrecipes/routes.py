@@ -2,14 +2,14 @@
 This page is for displaying the recipes that have been favorited
 
 """
-from flask import Blueprint, render_template
-from flask_login import login_required, current_user
+from website.myrecipes import blueprint
 from website.models import Recipe, User, recipe_user
 
-myrecipes_path = Blueprint('myrecipes_path', __name__)
+from flask import render_template
+from flask_login import login_required, current_user
 
 
-@myrecipes_path.route('/my-recipes')
+@blueprint.route('/my-recipes')
 @login_required
 def my_recipes():
     recipe_list = []

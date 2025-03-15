@@ -3,15 +3,15 @@
 {% block title %}Search for recipes{% endblock %}
 
 {% block content %}
-    <a href="{{ url_for('search_path.search') }}">Search again?</a>
+    <a href="{{ url_for('search_blueprint.search') }}">Search again?</a>
     <p>Search Returned {{ searched_value|length }} Results</p>
     
     <p>Use Check box to select recipes to favorite. Press Favorite to add them</p>
-    <form method="POST" action="{{ url_for('searched_path.searched') }}">
+    <form method="POST" action="{{ url_for('search_blueprint.searched') }}">
     <input type="submit" id="favorite" name="submit"  value="Favorite">
     {% for i in searched_value %}
         <P>
-            <a href="{{ url_for('recipe_path.recipe_template') }}?id={{i.id }}">{{ i.name }}</a>
+            <a href="{{ url_for('recipe_blueprint.recipe_template') }}?id={{i.id }}">{{ i.name }}</a>
             <input type="checkbox" name="favorite" value="{{ i.id }}">
             <br>{{  i.instructions }}
         </P>

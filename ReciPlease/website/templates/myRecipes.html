@@ -7,7 +7,7 @@
 
 <ul>
 {% for recipe in recipe_list %}
-    <li><a href="{{ url_for('recipe_path.recipe_template') }}?id={{recipe.id }}">{{recipe.name}}</a></li>
+    <li><a href="{{ url_for('recipe_blueprint.recipe_template') }}?id={{recipe.id }}">{{recipe.name}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

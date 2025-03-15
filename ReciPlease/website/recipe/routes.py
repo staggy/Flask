@@ -4,18 +4,17 @@ template for recipes to be displayed.
 uses the URL variables to query the database and display that recipe
 
 E.g. http://127.0.0.1:5000/recipe?id=5
-Will dispay the Candied Cashew Recipe
+Will display the Candied Cashew Recipe
 
 """
-from flask import Blueprint, render_template, request
+from website.recipe import blueprint
+
+from flask import render_template, request
 from flask_login import login_required, current_user
 from website.models import Recipe
-from website.home.home_path import home_path
-
-recipe_path = Blueprint('recipe_path', __name__)
 
 
-@recipe_path.route('/recipe')
+@blueprint.route('/recipe')
 @login_required
 def recipe_template():
     """
