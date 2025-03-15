@@ -1,9 +1,3 @@
-# work in progress
-
-This was a group project, that I have stripped out my other group members work so that I can learn all the peices that they have worked on.
-
-I'm upgrading the project to python 3.12 and latest dependencies. All the CSS and JavaScript that made it beautiful are stripped out currently.
-
 # How to Build
 Download and install pyhton 3.12<br>
 https://www.python.org/downloads/windows/ <br>
