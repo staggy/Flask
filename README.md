@@ -1,8 +1,8 @@
-# Computer Science Capstone Project
-By Carl Gager <br>
-I am creating this repository to showcase what I have learned in Flask Development.<br>
-I was the lead developer of our team and was responsible for managing pulls, structure, database, and deployment of our project.<br>
-My teamate who was responsible for the CSS did a wonderful job but for this repository I have removed that code to simplify the HMTL templates and make it easier for people to learn from this project<br>
+#work in progress
+
+This was a group project, that I have stripped out my other group members work so that I can learn all the peices that they have worked on.
+
+I'm upgrading the project to python 3.12 and latest dependencies. All the CSS and JavaScript that made it beautiful are stripped out currently.
 
 # How to Build
 Download and install pyhton 3.8 or 3.9<br>
