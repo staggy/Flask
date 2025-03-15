@@ -58,40 +58,12 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'Flask YOLO SECRET KEY'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(app.instance_path, DB_NAME)}'
-    #f'sqlite:///{app.instance_path}{DB_NAME}'
+    
     # Takes defined database and initializes it.
     db.init_app(app)
     
-    
-    """
-       Managing Pages:
-    
-            Add all paths to html pages here.
-    """
     register_blueprints(app)
-    """
-    from .auth import auth
-    from home.home_path import home_path
-    from search.search_path import search_path
-    from website.searched.searched_path import searched_path
-    from website.myrecipes.myrecipes_path import myrecipes_path
-    from website.recipe.recipe_path import recipe_path
-
-    # from website.test.test_path import test_path, testsearch_path, testsearched_path, testrecipe_path
-    # app.register_blueprint(test_path, url_prefix='/')
-    # app.register_blueprint(testsearch_path, url_prefix='/')
-    # app.register_blueprint(testsearched_path, url_prefix='/')
-    # app.register_blueprint(testrecipe_path, url_prefix='/')
-
-    #         Add all blueprint paths here.
-    app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(home_path, url_prefix='/')
-    app.register_blueprint(search_path, url_prefix='/')
-    app.register_blueprint(searched_path, url_prefix='/')
-    app.register_blueprint(myrecipes_path, url_prefix='/')
-    app.register_blueprint(recipe_path, url_prefix='/')
-    ##############################################################
-    """
+    
     # # import the model and create the database
     from .models import User, Note, Recipe, recipe_ingredient
 
